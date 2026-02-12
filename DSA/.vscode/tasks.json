@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build and Run All C++",
+      "type": "shell",
+      "command": "g++ -fdiagnostics-color=always -g *.cpp -o app.exe && echo. && echo ==================== OUTPUT ==================== && echo. && app.exe",
+      "options": {
+        "cwd": "${workspaceFolder}\\week-2_loops-pattern-printing",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/c"]
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+
+    {
+      "label": "Build and Run Current C++ File",
+      "type": "shell",
+      "command": "g++ -fdiagnostics-color=always -g \"${file}\" -o \"${fileBasenameNoExtension}.exe\" && echo. && echo ==================== OUTPUT ==================== && echo. && \"${fileBasenameNoExtension}.exe\"",
+      "options": {
+        "cwd": "${fileDirname}",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/c"]
+        }
+      },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    }
+  ]
+}
