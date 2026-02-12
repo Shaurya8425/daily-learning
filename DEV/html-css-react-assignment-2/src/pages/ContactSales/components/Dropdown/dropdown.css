@@ -1,0 +1,72 @@
+.dd-wrapper {
+  width: 320px;
+  position: relative;
+  font-family: Arial, sans-serif;
+}
+
+.dd-label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.dd-trigger {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  background: white;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dd-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dd-placeholder {
+  color: #888;
+}
+
+.dd-arrow {
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.dd-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dd-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+
+  background: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  z-index: 99;
+}
+
+.dd-option {
+  padding: 12px 14px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dd-option:hover {
+  background: #f5f5f5;
+}
