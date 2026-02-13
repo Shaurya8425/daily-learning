@@ -144,12 +144,60 @@ void hollowDiamond(int n) {
         }
         // star-space
         for (int j = 1; j <= n - i; j++) {
-            if (j == 1 || j == n-i+1)
+            if (j == 1 || j == n - i + 1)
                 cout << "* ";
             else
                 cout << "  ";
         }
         cout << endl;
+    }
+}
+
+void crown(int n) {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            cout << "* ";
+        }
+        for (int j = 1; j <= 2 * (n - i); j++) {
+            cout << "  ";
+        }
+        for (int j = 1; j <= i; j++) {
+            cout << "* ";
+        }
+        cout << endl;
+    }
+}
+
+void butterfly(int n) {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            cout << "* ";
+        }
+        for (int j = 1; j <= 2 * (n - i); j++) {
+            cout << "  ";
+        }
+        for (int j = 1; j <= i; j++) {
+            cout << "* ";
+        }
+        cout << endl;
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n - i; j++) {
+            cout << "* ";
+        }
+        for (int j = 1; j <= 2 * i; j++) {
+            cout << "  ";
+        }
+        for (int j = 1; j <= n - i; j++) {
+            cout << "* ";
+        }
+        cout << endl;
+    }
+}
+
+void invertedDiamond(int n) {
+    for(int i=1;i<=n;i++){
+        
     }
 }
 
@@ -188,5 +236,18 @@ int main() {
     // hollow diamond
     cout << "Hollow Diamond" << endl;
     hollowDiamond(n);
+
+    // crown
+    cout << "Crown" << endl;
+    crown(n);
+
+    // butterfly
+    cout << "Butterfly" << endl;
+    butterfly(n);
+
+    // inverted diamond
+    cout << "Inverted Diamond" << endl;
+    invertedDiamond(n);
+
     return 0;
 }
