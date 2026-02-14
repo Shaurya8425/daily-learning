@@ -2,51 +2,56 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build and Run All C++",
+      "label": "Build Current C++ File",
       "type": "shell",
-      "command": "g++ -fdiagnostics-color=always -g *.cpp -o app.exe && echo. && echo ==================== OUTPUT ==================== && echo. && app.exe",
-      "options": {
-        "cwd": "${workspaceFolder}\\week-2_loops-pattern-printing",
-        "shell": {
-          "executable": "cmd.exe",
-          "args": ["/c"]
-        }
-      },
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$gcc"],
-      "presentation": {
-        "echo": false,
-        "reveal": "always",
-        "focus": true,
-        "panel": "dedicated",
-        "showReuseMessage": false,
-        "clear": true
-      }
-    },
-
-    {
-      "label": "Build and Run Current C++ File",
-      "type": "shell",
-      "command": "g++ -fdiagnostics-color=always -g \"${file}\" -o \"${fileBasenameNoExtension}.exe\" && echo. && echo ==================== OUTPUT ==================== && echo. && \"${fileBasenameNoExtension}.exe\"",
+      "command": "g++ -fdiagnostics-color=always -g \"${file}\" -o \"${fileBasenameNoExtension}.exe\" && echo Build successful.",
       "options": {
         "cwd": "${fileDirname}",
         "shell": {
           "executable": "cmd.exe",
-          "args": ["/c"]
+          "args": ["/d", "/c"]
         }
       },
+      "group": "build",
       "problemMatcher": ["$gcc"],
       "presentation": {
         "echo": false,
         "reveal": "always",
-        "focus": true,
-        "panel": "dedicated",
-        "showReuseMessage": false,
-        "clear": true
+        "focus": false,
+        "panel": "shared",
+        "clear": true,
+        "showReuseMessage": false
       }
+    },
+    {
+      "label": "Run Current C++ File",
+      "type": "shell",
+      "command": "echo. && \"${fileBasenameNoExtension}.exe\"",
+      "options": {
+        "cwd": "${fileDirname}",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/d", "/c"]
+        }
+      },
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "clear": false,
+        "showReuseMessage": false
+      }
+    },
+    {
+      "label": "Build and Run Current C++ File",
+      "dependsOn": ["Build Current C++ File", "Run Current C++ File"],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
     }
   ]
 }

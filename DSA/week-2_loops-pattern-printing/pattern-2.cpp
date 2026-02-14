@@ -196,8 +196,35 @@ void butterfly(int n) {
 }
 
 void invertedDiamond(int n) {
-    for(int i=1;i<=n;i++){
-        
+    for (int i = 1; i <= n; i++) {
+        // leading stars
+        for (int j = 1; j <= n - i + 1; j++) {
+            cout << "* ";
+        }
+        // middle spaces
+        for (int j = 0; j < 2 * (i - 1); j++) {
+            cout << "  ";
+        }
+        // trailing stars
+        for (int j = 1; j <= n - i + 1; j++) {
+            cout << "* ";
+        }
+        cout << endl;
+    }
+    for (int i = 2; i <= n; i++) {
+        // leading stars
+        for (int j = 1; j <= i; j++) {
+            cout << "* ";
+        }
+        // middle spaces
+        for (int j = 0; j <= 2 * (n - i) - 1; j++) {
+            cout << "  ";
+        }
+        // trailing stars
+        for (int j = 1; j <= i; j++) {
+            cout << "* ";
+        }
+        cout << endl;
     }
 }
 
