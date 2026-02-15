@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="callWrapped()">Call wrapped()</button>
+
+<h3>Closure Memory</h3>
+<div id="state"></div>
+
+<h3>Logs</h3>
+<pre id="log"></pre>
+
+<script>
+function once(fn) {
+  let called = false
+  let result
+  let error
+  let waiting = []
+
+  function render() {
+    document.getElementById("state").innerHTML = `
+      called: ${called}<br>
+      result: ${result || "-"}<br>
+      waiting: [${waiting.map((_,i)=>"cb"+(i+1)).join(", ")}]
+    `
+  }
+
+  return function(callback) {
+    if (called) {
+      log("cached callback fired")
+      callback(error, result)
+      return
+    }
+
+    waiting.push(callback)
+    render()
+
+    if (waiting.length === 1) {
+      log("fn started")
+
+      fn((err, res) => {
+        called = true
+        error = err
+        result = res
+
+        waiting.forEach(cb => cb(error, result))
+        waiting = []
+        render()
+      })
+    }
+  }
+}
+
+function slowFn(cb) {
+  setTimeout(() => cb(null, "DATA"), 2000)
+}
+
+const wrapped = once(slowFn)
+
+let count = 1
+
+function callWrapped() {
+  wrapped(() => log("cb" + count++ + " resolved"))
+}
+
+function log(msg) {
+  document.getElementById("log").textContent += msg + "\n"
+}
+</script>
+
+</body>
+</html>
