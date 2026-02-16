@@ -4,18 +4,17 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-
+    /* binary pyramid */
     for (int i = 1; i <= n; i++) {
-        // leading spaces
-        for (int j = 1; j <= n - i; j++) {
-            cout << " ";
-        }
+        char ch = '0';
         for (int j = 1; j <= i; j++) {
-            if (j == 1 || j == n || j == i)
-                cout << "* ";
-            else
-                cout << " ";
+            cout << ch;
+            // if (ch=='')
+            //     cout << "";
+            // else
+            //     cout << "";
         }
+        ch = '1';
         cout << endl;
     }
     return 0;

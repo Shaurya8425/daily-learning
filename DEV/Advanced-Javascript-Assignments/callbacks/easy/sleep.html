@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callback</title>
+  </head>
+  <body>
+    <h1>Callback</h1>
+    <button id="just-btn">Click me!</button>
+    <p id="demo"></p>
+    <h2>setTimeout</h2>
+    <button id="wait-btn">Click me.</button>
+    <p id="confession"></p>
+    <script>
+      function displayDate() {
+        document.getElementById("demo").innerHTML = Date();
+      }
+      document
+        .getElementById("just-btn")
+        .addEventListener("click", displayDate); //here displayDate is callback function passed as argument to addEventListener() method which is function itself.
+
+      function buttonClickEventFunction(str, fn) {
+        document.getElementById(str).addEventListener("click", fn);
+      }
+      function iLu() {
+        document.getElementById("confession").innerHTML = "I Love You !!";
+      }
+      setTimeout(() => buttonClickEventFunction("wait-btn", iLu), 3000);
+    </script>
+  </body>
+</html>
