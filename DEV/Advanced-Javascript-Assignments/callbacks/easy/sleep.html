@@ -12,7 +12,58 @@
     <h2>setTimeout</h2>
     <button id="wait-btn">Click me.</button>
     <p id="confession"></p>
+
+    <!-- Passing function in methods -->
+    <h2>forEach Method</h2>
+    <p>call function for each array element</p>
+    <input
+      type="text"
+      id="userInput"
+      placeholder="Enter numbers separated by commas"
+    />
+    <button id="start">Start</button>
+    <p id="number"></p>
+
+    <!-- sequence control -->
+    <h2>Calculator</h2>
+    <p>Implemented via sequence control</p>
+    <input id="expression" type="text" />
+    <button id="eval">Evaluate</button>
+    <p id="result"></p>
     <script>
+      /* sequence control */
+      function evaluateResult() {
+        const expression = document.getElementById("expression").value;
+        const result = eval(expression);
+        document.getElementById("result").innerHTML = result;
+      }
+
+      // defining forEach callback
+      const numbers = [23, 11, 34, 12, 53];
+      let txt = "";
+      // numbers.forEach(modify);
+      // numbers.forEach(delayModify);
+      document.getElementById("number").innerHTML = txt;
+      function modify(value) {
+        txt += value + "<br>";
+      }
+      // what if i want numbers to appear with delay.
+      function delayModify(value, index) {
+        setTimeout(() => {
+          txt += value + "<br>";
+          document.getElementById("number").innerHTML = txt;
+        }, index * 500);
+      }
+      // what if i want to take numbers from user
+      function inputModify() {
+        txt = "";
+        const input = document.getElementById("userInput").value;
+        let numbers = input.split(",").map(Number);
+        numbers = numbers.map((value) => value * 2);
+        numbers.forEach(delayModify);
+      }
+      buttonClickEventFunction("start", inputModify);
+
       function displayDate() {
         document.getElementById("demo").innerHTML = Date();
       }
