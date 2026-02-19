@@ -1,19 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void prime(int n) {
-  for (int i = 2; i <= n; i++) {
-    int flag = 1;
-    for (int j = 2; j*j <= i; j++) {
-      if (i % j == 0) flag = 0;
-    }
-    if (flag == 1) cout << i<<" ";
+int hCf(int n1, int n2) {
+  int s, l;
+  if (n1 < n2) {
+    s = n1;
+    l = n2;
+  } else {
+    s = n2;
+    l = n1;
   }
+  int result = 1;
+  for (int i = 1; i <= s; i++) {
+    if (s % i == 0 && l % i == 0) result = i;
+  }
+  return result;
 }
 
 int main() {
-  int n;
-  cin >> n;
-  prime(n);
+  int n1, n2;
+  cin >> n1 >> n2;
+  cout << hCf(n1, n2);
   return 0;
 }
