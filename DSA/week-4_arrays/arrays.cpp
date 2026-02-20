@@ -65,20 +65,130 @@ bool sortedOrNot(int arr[], int s) {
   return true;
 }
 
+void swap(int& a, int& b) {
+  int c = a;
+  a = b;
+  b = c;
+}
+
+void sort01(int arr[], int n) {
+  for (int i = 0; i < n; i++) {
+    for (int j = n; j >= 0; j--) {
+      if (i < j) {
+        if (arr[i] == 1 && arr[j] == 0) swap(arr[i], arr[j]);
+      }
+    }
+  }
+  /* after sorting print array */
+  // printArray(arr, n);
+}
+
+void printArray(int arr[], int n) {
+  for (int i = 0; i < n; i++) {
+    cout << arr[i] << " ";
+  }
+}
+
+void swapAlternate(int arr[], int n) {
+  for (int i = 0; i + 1 < n; i += 2) {
+    swap(arr[i], arr[i + 1]);
+  }
+  printArray(arr, n);
+}
+
+void reverseArray(int arr[], int n) {
+  int l = 0;
+  int r = n - 1;
+  while (l < r) {
+    swap(arr[l], arr[r]);
+    l++;
+    r--;
+  }
+  printArray(arr, n);
+}
+
+int missingNumber(int arr[], int n) {
+  for (int i = 0; i < n; i++) {
+    bool flag = false;
+    for (int j = 0; j < n; j++) {
+      if (i != j && arr[i] == arr[j]) {
+        flag = true;
+        break;
+      }
+    }
+    if (!flag) return arr[i];
+  }
+  return -1;
+}
+
+void arrayIntersection(int arr1[], int n1, int arr2[], int n2) {
+  for (int i = 0; i < n1; i++) {
+    for (int j = 0; j < n2; j++) {
+      if (arr1[i] == arr2[j]) {
+        cout << arr1[i];
+        break;
+      }
+    }
+  }
+}
+
+int pairSum(int arr[], int n, int target) {
+  int count = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+      if (arr[i] + arr[j] == target) count++;
+    }
+  }
+  return count;
+}
+int tripletSum(int arr[], int n, int target) {
+  int count = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+      for (int k = j + 1; k < n; k++) {
+        if (arr[i] + arr[j] + arr[k] == target) count++;
+      }
+    }
+  }
+  return count;
+}
+int tripletSum(int arr[], int n, int target) {
+  int count = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = i + 1; j < n; j++) {
+      for (int k = j + 1; k < n; k++) {
+        for (int l = k + 1; l < n; l++) {
+          if (arr[i] + arr[j] + arr[k] + arr[l] == target) count++;
+        }
+      }
+    }
+  }
+  return count;
+}
 int main() {
-  int n1;
-  cin >> n1;
+  // taking input logic
+  int n1, target;
+  cin >> n1 >> target;
   int arr1[n1];
   for (int i = 0; i < n1; i++) {
     cin >> arr1[i];
   }
-  if (sortedOrNot(arr1,n1))
-    cout << "Yes";
-  else
-    cout << "No";
   /* for (int i = 0; i < n2; i++) {
     cin >> arr2[i];
   } */
+
+  // sort01(arr1, n1);
+  // swapAlternate(arr1, n1);
+  // reverseArray(arr1, n1);
+  // cout << missingNumber(arr1, n1);
+  // arrayIntersection(arr1, n1, arr2, n2);
+  // cout << pairSum(arr1, n1, target);
+  cout << tripletSum(arr1, n1, target);
+
+  /* if (sortedOrNot(arr1, n1))
+    cout << "Yes";
+  else
+    cout << "No"; */
 
   /* int flag = searchNums(arr1, n1, arr2, n2);
   if (flag == 1)
