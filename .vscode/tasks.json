@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Current File",
+      "type": "shell",
+      "command": "$ext=[System.IO.Path]::GetExtension('${file}'); $name=[System.IO.Path]::GetFileName('${file}'); $sep='─' * 40; if ($ext -in '.cpp','.cc','.cxx') { Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ▶  $name\" -ForegroundColor Cyan; Write-Host \"$sep`n\" -ForegroundColor DarkGray; $err = g++ -std=c++17 -Wall -o \"$env:TEMP\\__run.exe\" \"${file}\" 2>&1; if ($?) { & \"$env:TEMP\\__run.exe\"; Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ✔  Exited $LASTEXITCODE\" -ForegroundColor Green; Write-Host \"$sep`n\" -ForegroundColor DarkGray } else { Write-Host $err -ForegroundColor Red; Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ✖  Build failed\" -ForegroundColor Red; Write-Host \"$sep`n\" -ForegroundColor DarkGray } } elseif ($ext -eq '.c') { Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ▶  $name\" -ForegroundColor Cyan; Write-Host \"$sep`n\" -ForegroundColor DarkGray; $err = gcc -o \"$env:TEMP\\__run.exe\" \"${file}\" 2>&1; if ($?) { & \"$env:TEMP\\__run.exe\"; Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ✔  Exited $LASTEXITCODE\" -ForegroundColor Green; Write-Host \"$sep`n\" -ForegroundColor DarkGray } else { Write-Host $err -ForegroundColor Red; Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ✖  Build failed\" -ForegroundColor Red; Write-Host \"$sep`n\" -ForegroundColor DarkGray } } elseif ($ext -eq '.py') { Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ▶  $name\" -ForegroundColor Cyan; Write-Host \"$sep`n\" -ForegroundColor DarkGray; python \"${file}\"; Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ✔  Done\" -ForegroundColor Green; Write-Host \"$sep`n\" -ForegroundColor DarkGray } elseif ($ext -eq '.js') { Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ▶  $name\" -ForegroundColor Cyan; Write-Host \"$sep`n\" -ForegroundColor DarkGray; node \"${file}\"; Write-Host \"`n$sep\" -ForegroundColor DarkGray; Write-Host \" ✔  Done\" -ForegroundColor Green; Write-Host \"$sep`n\" -ForegroundColor DarkGray } else { Write-Host ' ✖  File type not supported' -ForegroundColor Yellow }",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe",
+          "args": ["-NoProfile", "-Command"]
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "echo": false
+      },
+      "problemMatcher": []
+    }
+  ]
+}
