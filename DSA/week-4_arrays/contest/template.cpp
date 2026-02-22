@@ -8,20 +8,29 @@ void inputArray(int arr[], int n) {
 }
 
 void outputArray(int arr[], int n) {
-  for (int i = n - 1; i >= 0; i--) {
+  for (int i = 0; i < n; i++) {
     cout << arr[i] << " ";
   }
 }
 
-void reverseArray() {
+void ArrangeNum() {
   int n;
   cin >> n;
   int arr[n];
-  inputArray(arr, n);
+
+  for (int i = 0; i < n / 2; i++) {
+    arr[i] = 2 * i + 1;
+  }
+  int even = 2;
+  for (int j = n - 1; j >= n / 2; j--) {
+    arr[j] = even;
+    even += 2;
+  }
+
   outputArray(arr, n);
 }
 
 int main() {
-  reverseArray();
+  ArrangeNum();
   return 0;
 }

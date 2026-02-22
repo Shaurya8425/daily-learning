@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // ── BUILD ALL ──────────────────────────────────────────────────────────────
+    {
+      "label": "Build All C++ Files",
+      "type": "shell",
+      "command": "echo -- Building... && echo. && g++ -fdiagnostics-color=never -g *.cpp -o app.exe && echo. && echo -- Done. || (echo. && echo -- Build failed. && exit /b 1)",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/d", "/c"]
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "showReuseMessage": false
+      }
+    },
+
+    // ── BUILD CURRENT ──────────────────────────────────────────────────────────
+    {
+      "label": "Build Current C++ File",
+      "type": "shell",
+      "command": "echo -- Building ${fileBasename}... && echo. && g++ -fdiagnostics-color=never -g \"${file}\" -o \"${fileBasenameNoExtension}.exe\" && echo. && echo -- Done. || (echo. && echo -- Build failed. && exit /b 1)",
+      "options": {
+        "cwd": "${fileDirname}",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/d", "/c"]
+        }
+      },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "showReuseMessage": false
+      }
+    },
+
+    // ── RUN CURRENT ───────────────────────────────────────────────────────────
+    {
+      "label": "Run Current C++ File",
+      "type": "shell",
+      "command": "echo -- Running... && echo. && \"${fileBasenameNoExtension}.exe\" && echo. && echo -- Finished.",
+      "options": {
+        "cwd": "${fileDirname}",
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/d", "/c"]
+        }
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "panel": "shared",
+        "clear": false,
+        "showReuseMessage": false
+      }
+    },
+
+    // ── BUILD AND RUN CURRENT ─────────────────────────────────────────────────
+    {
+      "label": "Build and Run Current C++ File",
+      "dependsOn": ["Build Current C++ File", "Run Current C++ File"],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "showReuseMessage": false
+      }
+    }
+  ]
+}

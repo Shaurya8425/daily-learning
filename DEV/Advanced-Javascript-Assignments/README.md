@@ -53,5 +53,3 @@ Assignments are now organized by topic and then by difficulty:
 For a walkthrough on navigating through the assignments, check out this demo video:
 
 https://gist.github.com/user-attachments/assets/02c5eca2-29d2-425f-bb50-5e613252a40f
-
-
