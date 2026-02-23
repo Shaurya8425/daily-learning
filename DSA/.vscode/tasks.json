@@ -5,7 +5,7 @@
     {
       "label": "Build All C++ Files",
       "type": "shell",
-      "command": "echo -- Building... && echo. && g++ -fdiagnostics-color=never -g *.cpp -o app.exe && echo. && echo -- Done. || (echo. && echo -- Build failed. && exit /b 1)",
+      "command": "g++ -fdiagnostics-color=never -g -Wall -Wextra -pedantic *.cpp -o app.exe",
       "options": {
         "cwd": "${workspaceFolder}",
         "shell": {
@@ -31,7 +31,7 @@
     {
       "label": "Build Current C++ File",
       "type": "shell",
-      "command": "echo -- Building ${fileBasename}... && echo. && g++ -fdiagnostics-color=never -g \"${file}\" -o \"${fileBasenameNoExtension}.exe\" && echo. && echo -- Done. || (echo. && echo -- Build failed. && exit /b 1)",
+      "command": "g++ -fdiagnostics-color=never -g -Wall -Wextra -pedantic \"${file}\" -o \"${fileBasenameNoExtension}.exe\"",
       "options": {
         "cwd": "${fileDirname}",
         "shell": {
@@ -53,7 +53,7 @@
     {
       "label": "Run Current C++ File",
       "type": "shell",
-      "command": "echo -- Running... && echo. && \"${fileBasenameNoExtension}.exe\" && echo. && echo -- Finished.",
+      "command": "\"${fileBasenameNoExtension}.exe\"",
       "options": {
         "cwd": "${fileDirname}",
         "shell": {
