@@ -36,3 +36,5 @@ const counter = outer();
 counter();
 counter();
 counter();
+
+sleep(5)
