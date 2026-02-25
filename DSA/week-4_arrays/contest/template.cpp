@@ -9,35 +9,38 @@ void inputArray(vector<int>& arr, int n) {
 
 void outputArray(vector<int>& arr, int n) {
   for (int i = 0; i < n; i++) {
-    cout << arr[i] << " ";
+    cout << arr[i] << "\n";
   }
 }
 
-void swipe(int& a, int& b) {
-  int temp = a;
-  a = b;
-  b = temp;
-}
-
-void swipeAlternate(int n) {
+int missingNumber() {
+  int n;
+  cin >> n;
   vector<int> arr(n);
   inputArray(arr, n);
-  for (int i = 0; i < n-1; i += 2) {
-    swipe(arr[i], arr[i + 1]);
+  for (int i = 0; i < n; i++) {
+    bool unique = true;
+    for (int j = 0; j < n; j++) {
+      if (i != j && arr[i] == arr[j]) {
+        unique = false;
+        break;
+      }
+    }
+    if (unique) {
+      return arr[i];  
+    }
   }
-  outputArray(arr, n);
+  /* making sure we're returning something from this function. */
+  return -1;
 }
 
 int main() {
-  int n;
-  cin >> n;
-
-  vector<int> input(n);
-  inputArray(input, n);
-
-  for (int i = 0; i < n; i++) {
-    swipeAlternate(input[i]);
-    cout<<"\n";
+  int t;
+  cin >> t;
+  vector<int> results;
+  for (int i = 0; i < t; i++) {
+    results.push_back(missingNumber());
   }
+  outputArray(results, t);
   return 0;
 }
