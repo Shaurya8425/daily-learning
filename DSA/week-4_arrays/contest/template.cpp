@@ -1,46 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void inputArray(vector<int>& arr, int n) {
-  for (int i = 0; i < n; i++) {
+void inputArray(vector<int>& arr) {
+  for (size_t i = 0; i < arr.size(); i++) {
     cin >> arr[i];
   }
 }
 
-void outputArray(vector<int>& arr, int n) {
-  for (int i = 0; i < n; i++) {
-    cout << arr[i] << "\n";
-  }
-}
+int pairSum() {
+  int n, target;
 
-int missingNumber() {
-  int n;
-  cin >> n;
+  cin >> n>>target;
   vector<int> arr(n);
-  inputArray(arr, n);
+  inputArray(arr);
+
+  int count = 0;
   for (int i = 0; i < n; i++) {
-    bool unique = true;
-    for (int j = 0; j < n; j++) {
-      if (i != j && arr[i] == arr[j]) {
-        unique = false;
-        break;
+    for (int j = i + 1; j < n; j++) {
+      for (int k = j + 1; k < n; k++) {
+        for (int l = k + 1; l < n; l++) {
+          if (arr[i] - 2 * arr[j] + 3 * arr[k] - 4 * arr[l] == target) count++;
+        }
       }
     }
-    if (unique) {
-      return arr[i];  
-    }
   }
-  /* making sure we're returning something from this function. */
-  return -1;
+
+  return count;
 }
 
 int main() {
-  int t;
-  cin >> t;
-  vector<int> results;
-  for (int i = 0; i < t; i++) {
-    results.push_back(missingNumber());
-  }
-  outputArray(results, t);
+  cout << pairSum();
   return 0;
 }
