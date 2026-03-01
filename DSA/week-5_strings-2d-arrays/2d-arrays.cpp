@@ -70,7 +70,7 @@ int main() {
     }
   }
   cout << index << endl;
-  for (size_t i = 0; i < indexArred.size(); i++) {
+  for (size_t i = 0; i < indexArr.size(); i++) {
     cout << indexArr[i]<<" ";
   }
   return 0;
