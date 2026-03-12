@@ -30,3 +30,29 @@ void leapYear(int n) {
     cout << "No";
   }
 }
+
+int countGoodN(long long arr[], int n) {
+  int count = 0;
+  for (int i = 0; i < n; i++) {
+    if ((arr[i] != 0 && 18 % arr[i] == 0) || arr[i] % 45 == 0) {
+      count++;
+    }
+  }
+  return count;
+}
+
+void fizzBuzz(int n) {
+  for (int i = 1; i <= n; i++) {
+    if (i % 3 == 0) {
+      if (i % 5 == 0) {
+        cout << "FizzBuzz" << '\n';
+      } else {
+        cout << "Fizz" << '\n';
+      }
+    } else if (i % 5 == 0) {
+      cout << "Buzz" << '\n';
+    } else {
+      cout << i << '\n';
+    }
+  }
+}
